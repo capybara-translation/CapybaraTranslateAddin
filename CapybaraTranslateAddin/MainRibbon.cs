@@ -256,5 +256,14 @@ namespace CapybaraTranslateAddin
 
             taskPane.Visible = true;
         }
+
+        private void ShowProductInfoButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            using (var dialog = new ProductInfoDialog())
+            {
+                dialog.ShowDialog(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
+
+            }
+        }
     }
 }

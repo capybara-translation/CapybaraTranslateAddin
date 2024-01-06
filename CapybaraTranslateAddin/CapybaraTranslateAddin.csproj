@@ -35,7 +35,7 @@
     <PublishUrl>公開\</PublishUrl>
     <InstallUrl />
     <TargetCulture>ja</TargetCulture>
-    <ApplicationVersion>1.0.0.13</ApplicationVersion>
+    <ApplicationVersion>1.0.0.18</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -232,6 +232,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.1\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -350,6 +351,12 @@
     <Compile Include="Configuration\DeepLConfiguration.cs" />
     <Compile Include="Configuration\GoogleConfiguration.cs" />
     <Compile Include="Configuration\OpenAiConfiguration.cs" />
+    <Compile Include="ProductInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductInfoDialog.Designer.cs">
+      <DependentUpon>ProductInfoDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainRibbon.resx">
       <DependentUpon>MainRibbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductInfoDialog.resx">
+      <DependentUpon>ProductInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

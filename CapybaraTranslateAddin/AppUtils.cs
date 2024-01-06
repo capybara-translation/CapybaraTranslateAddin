@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Deployment.Application;
 using System.IO;
 
 namespace CapybaraTranslateAddin
@@ -22,5 +23,14 @@ namespace CapybaraTranslateAddin
                 "sound");
         }
 
+        public static string GetAddinVersion()
+        {
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+
+            return "development mode";
+        }
     }
 }
