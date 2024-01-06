@@ -1,8 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapybaraTranslateAddin.ApiClient;
 using CapybaraTranslateAddin.Configuration;
+using Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace CapybaraTranslateAddin
@@ -80,10 +83,10 @@ namespace CapybaraTranslateAddin
             try
             {
                 var voiceName = voiceComboBox.Text;
-                var selection = Application.Selection;
                 var filenameColumn = cellValueForFilenameTextBox.Text.Trim();
-                var activeSheet = Application.ActiveSheet;
-                int selectedCellCount = selection.Count;
+                Range selection = Application.Selection;
+                Worksheet activeSheet = Application.ActiveSheet;
+                var selectedCellCount = selection.Count;
                 var filenameLength = selectedCellCount.ToString().Length + ".mp3".Length;
                 var destFolder = saveToTextBox.Text.Trim();
                 var count = 0;
@@ -91,25 +94,35 @@ namespace CapybaraTranslateAddin
                 progressDialog = new ProgressDialog(progressMsg, 1, selectedCellCount);
                 progressDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
 
-                foreach (var cell in selection)
+                foreach (var cells in selection.ToList().Select((cell, idx) => new { No = idx + 1, Cell = cell })
+                             .Chunk(5))
                 {
-                    var text = cell.Text;
-                    var row = cell.Row;
-                    if (!string.IsNullOrWhiteSpace(text))
+                    var tasks = cells.Select(numberedCell =>
                     {
-                        count++;
-                        string filename;
-                        if (!string.IsNullOrWhiteSpace(filenameColumn))
-                            filename = activeSheet.Range[$"{filenameColumn}{row}"].Text;
-                        else
-                            filename = $"{count}.mp3".PadLeft(filenameLength, '0');
+                        return Task.Run(async () =>
+                        {
+                            var cell = numberedCell.Cell;
+                            var no = numberedCell.No;
 
-                        var destination = Path.Combine(destFolder, filename);
+                            string text = cell.Text;
+                            var row = cell.Row;
+                            if (!string.IsNullOrWhiteSpace(text))
+                            {
+                                string filename;
+                                if (!string.IsNullOrWhiteSpace(filenameColumn))
+                                    filename = activeSheet.Range[$"{filenameColumn}{row}"].Text;
+                                else
+                                    filename = $"{no}.mp3".PadLeft(filenameLength, '0');
 
-                        var isSuccess = await client.TextToSpeechAsync(text, voiceName, destination);
-                    }
-                    progressDialog.ReportProgress(++progress);
+                                var destination = Path.Combine(destFolder, filename);
 
+                                await client.TextToSpeechAsync(text, voiceName, destination);
+                            }
+
+                            progressDialog.ReportProgress(++progress);
+                        });
+                    });
+                    await Task.WhenAll(tasks);
                 }
             }
             finally

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CapybaraTranslateAddin.ApiClient;
 using CapybaraTranslateAddin.Configuration;
 using Microsoft.Office.Interop.Excel;
@@ -157,16 +158,24 @@ namespace CapybaraTranslateAddin
                 progressDialog = new ProgressDialog(progressMsg, 1, selection.Count);
                 progressDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
                 var progress = 0;
-                foreach (Range cell in selection)
+                foreach (var cells in selection.ToList().Chunk(3))
                 {
-                    var text = cell.Text;
-                    if (!string.IsNullOrWhiteSpace(text))
+                    var tasks = cells.Select(cell =>
                     {
-                        var translation = await client.TranslateAsync(text, from, to);
-                        cell.Value = translation;
-                    }
+                        return Task.Run(async () =>
+                        {
+                            string text = cell.Text;
+                            if (!string.IsNullOrWhiteSpace(text))
+                            {
+                                var translation = await client.TranslateAsync(text, from, to);
+                                cell.Value = translation;
+                            }
 
-                    progressDialog.ReportProgress(++progress);
+                            progressDialog.ReportProgress(++progress);
+                        });
+
+                    });
+                    await Task.WhenAll(tasks);
                 }
             }
             finally
