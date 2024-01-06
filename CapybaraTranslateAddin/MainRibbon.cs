@@ -174,10 +174,14 @@ namespace CapybaraTranslateAddin
 
                             progressDialog.ReportProgress(++progress);
                         });
-
                     });
                     await Task.WhenAll(tasks);
                 }
+            }
+            catch (Exception ex)
+            {
+                var errorMessageDialog = new ErrorMessageDialog(ex);
+                errorMessageDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
             }
             finally
             {
@@ -190,30 +194,38 @@ namespace CapybaraTranslateAddin
 
         private void translateButton_Click(object sender, RibbonControlEventArgs e)
         {
-            var engineCode = engineDropDown.SelectedItem.Tag.ToString();
-            if (engineCode == DeepLClient.EngineCode)
+            try
             {
-                var client = new DeepLClient(new DeepLClientOptions
+                var engineCode = engineDropDown.SelectedItem.Tag.ToString();
+                if (engineCode == DeepLClient.EngineCode)
                 {
-                    ApiKey = _addinConfiguration.DeepL.ApiKey
-                });
-                TranslateSelectedCells(client);
+                    var client = new DeepLClient(new DeepLClientOptions
+                    {
+                        ApiKey = _addinConfiguration.DeepL.ApiKey
+                    });
+                    TranslateSelectedCells(client);
+                }
+                else if (engineCode == GoogleClient.EngineCode)
+                {
+                    var client = new GoogleClient(new GoogleClientOptions
+                    {
+                        Credentials = _addinConfiguration.Google.Credentials
+                    });
+                    TranslateSelectedCells(client);
+                }
+                else
+                {
+                    var client = new OpenAiClient(new OpenAiClientOptions
+                    {
+                        ApiKey = _addinConfiguration.OpenAi.ApiKey
+                    });
+                    TranslateSelectedCells(client);
+                }
             }
-            else if (engineCode == GoogleClient.EngineCode)
+            catch (Exception ex)
             {
-                var client = new GoogleClient(new GoogleClientOptions
-                {
-                    Credentials = _addinConfiguration.Google.Credentials
-                });
-                TranslateSelectedCells(client);
-            }
-            else
-            {
-                var client = new OpenAiClient(new OpenAiClientOptions
-                {
-                    ApiKey = _addinConfiguration.OpenAi.ApiKey
-                });
-                TranslateSelectedCells(client);
+                var errorMessageDialog = new ErrorMessageDialog(ex);
+                errorMessageDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
             }
         }
 

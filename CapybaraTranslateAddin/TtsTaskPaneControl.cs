@@ -90,7 +90,6 @@ namespace CapybaraTranslateAddin
                 var selectedCellCount = selection.Count;
                 var filenameLength = selectedCellCount.ToString().Length + ".mp3".Length;
                 var destFolder = saveToTextBox.Text.Trim();
-                var count = 0;
                 var progress = 0;
                 progressDialog = new ProgressDialog(progressMsg, 1, selectedCellCount);
                 progressDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
@@ -126,6 +125,11 @@ namespace CapybaraTranslateAddin
                     await Task.WhenAll(tasks);
                 }
             }
+            catch (Exception ex)
+            {
+                var errorMessageDialog = new ErrorMessageDialog(ex);
+                errorMessageDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
+            }
             finally
             {
                 runTtsButton.Enabled = true;
@@ -137,11 +141,19 @@ namespace CapybaraTranslateAddin
 
         private void runTtsButton_Click(object sender, EventArgs e)
         {
-            var client = new GoogleClient(new GoogleClientOptions
+            try
             {
-                Credentials = _addinConfiguration.Google.Credentials
-            });
-            RunTextToSpeechOnSelectedCells(client);
+                var client = new GoogleClient(new GoogleClientOptions
+                {
+                    Credentials = _addinConfiguration.Google.Credentials
+                });
+                RunTextToSpeechOnSelectedCells(client);
+            }
+            catch (Exception ex)
+            {
+                var errorMessageDialog = new ErrorMessageDialog(ex);
+                errorMessageDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
+            }
         }
     }
 }

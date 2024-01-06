@@ -35,7 +35,7 @@
     <PublishUrl>公開\</PublishUrl>
     <InstallUrl />
     <TargetCulture>ja</TargetCulture>
-    <ApplicationVersion>1.0.0.12</ApplicationVersion>
+    <ApplicationVersion>1.0.0.13</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -334,6 +334,12 @@
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Configuration\AddinConfiguration.cs" />
+    <Compile Include="ErrorMessageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorMessageDialog.Designer.cs">
+      <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="MainRibbon.cs">
       <SubType>Component</SubType>
@@ -362,6 +368,9 @@
     </Compile>
     <EmbeddedResource Include="ConfigurationForm.resx">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorMessageDialog.resx">
+      <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainRibbon.resx">
       <DependentUpon>MainRibbon.cs</DependentUpon>
