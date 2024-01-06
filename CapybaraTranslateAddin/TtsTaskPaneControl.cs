@@ -82,6 +82,7 @@ namespace CapybaraTranslateAddin
 
             try
             {
+                runTtsButton.Enabled = false;
                 var voiceName = voiceComboBox.Text;
                 var filenameColumn = cellValueForFilenameTextBox.Text.Trim();
                 Range selection = Application.Selection;
@@ -127,6 +128,7 @@ namespace CapybaraTranslateAddin
             }
             finally
             {
+                runTtsButton.Enabled = true;
                 Application.DisplayStatusBar = oldStatusBar;
                 Application.StatusBar = false;
                 progressDialog?.Close();

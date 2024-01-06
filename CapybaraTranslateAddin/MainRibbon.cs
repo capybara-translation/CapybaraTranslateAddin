@@ -152,6 +152,7 @@ namespace CapybaraTranslateAddin
             ProgressDialog progressDialog = null;
             try
             {
+                translateButton.Enabled = false;
                 var from = fromLangDropDown.SelectedItem.Tag.ToString();
                 var to = toLangDropDown.SelectedItem.Tag.ToString();
                 Range selection = Application.Selection;
@@ -180,6 +181,7 @@ namespace CapybaraTranslateAddin
             }
             finally
             {
+                translateButton.Enabled = true;
                 Application.DisplayStatusBar = oldStatusBar;
                 Application.StatusBar = false;
                 progressDialog?.Close();
