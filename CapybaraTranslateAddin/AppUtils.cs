@@ -21,5 +21,6 @@ namespace CapybaraTranslateAddin
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                 "sound");
         }
+
     }
 }

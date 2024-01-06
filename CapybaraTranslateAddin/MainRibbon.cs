@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CapybaraTranslateAddin.ApiClient;
 using CapybaraTranslateAddin.Configuration;
+using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
@@ -152,11 +153,11 @@ namespace CapybaraTranslateAddin
             {
                 var from = fromLangDropDown.SelectedItem.Tag.ToString();
                 var to = toLangDropDown.SelectedItem.Tag.ToString();
-                var selection = Application.Selection;
+                Range selection = Application.Selection;
                 progressDialog = new ProgressDialog(progressMsg, 1, selection.Count);
                 progressDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
                 var progress = 0;
-                foreach (var cell in selection)
+                foreach (Range cell in selection)
                 {
                     var text = cell.Text;
                     if (!string.IsNullOrWhiteSpace(text))

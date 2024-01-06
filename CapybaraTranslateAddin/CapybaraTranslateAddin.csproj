@@ -334,6 +334,7 @@
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Configuration\AddinConfiguration.cs" />
+    <Compile Include="LinqExtensions.cs" />
     <Compile Include="MainRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
