@@ -36,14 +36,14 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.preferencesGroup = this.Factory.CreateRibbonGroup();
+            this.openConfigButton = this.Factory.CreateRibbonButton();
             this.translationGroup = this.Factory.CreateRibbonGroup();
             this.engineDropDown = this.Factory.CreateRibbonDropDown();
             this.fromLangDropDown = this.Factory.CreateRibbonDropDown();
             this.toLangDropDown = this.Factory.CreateRibbonDropDown();
-            this.ttsGroup = this.Factory.CreateRibbonGroup();
-            this.openConfigButton = this.Factory.CreateRibbonButton();
             this.swapButton = this.Factory.CreateRibbonButton();
             this.translateButton = this.Factory.CreateRibbonButton();
+            this.ttsGroup = this.Factory.CreateRibbonGroup();
             this.openTtsPaneButton = this.Factory.CreateRibbonButton();
             this.HelpGroup = this.Factory.CreateRibbonGroup();
             this.ShowProductInfoButton = this.Factory.CreateRibbonButton();
@@ -69,6 +69,15 @@
             this.preferencesGroup.Items.Add(this.openConfigButton);
             this.preferencesGroup.Label = "Preferences";
             this.preferencesGroup.Name = "preferencesGroup";
+            // 
+            // openConfigButton
+            // 
+            this.openConfigButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.openConfigButton.Label = "Settings";
+            this.openConfigButton.Name = "openConfigButton";
+            this.openConfigButton.OfficeImageId = "Preferences";
+            this.openConfigButton.ShowImage = true;
+            this.openConfigButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.openConfigButton_Click);
             // 
             // translationGroup
             // 
@@ -98,21 +107,6 @@
             this.toLangDropDown.Name = "toLangDropDown";
             this.toLangDropDown.SizeString = "Portuguese (Brazilian)";
             // 
-            // ttsGroup
-            // 
-            this.ttsGroup.Items.Add(this.openTtsPaneButton);
-            this.ttsGroup.Label = "Text to Speech";
-            this.ttsGroup.Name = "ttsGroup";
-            // 
-            // openConfigButton
-            // 
-            this.openConfigButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.openConfigButton.Label = "Settings";
-            this.openConfigButton.Name = "openConfigButton";
-            this.openConfigButton.OfficeImageId = "Preferences";
-            this.openConfigButton.ShowImage = true;
-            this.openConfigButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.openConfigButton_Click);
-            // 
             // swapButton
             // 
             this.swapButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -130,6 +124,12 @@
             this.translateButton.OfficeImageId = "Translate";
             this.translateButton.ShowImage = true;
             this.translateButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.translateButton_Click);
+            // 
+            // ttsGroup
+            // 
+            this.ttsGroup.Items.Add(this.openTtsPaneButton);
+            this.ttsGroup.Label = "Text to Speech";
+            this.ttsGroup.Name = "ttsGroup";
             // 
             // openTtsPaneButton
             // 

@@ -7,8 +7,9 @@ namespace CapybaraTranslateAddin
         public ProductInfoDialog()
         {
             InitializeComponent();
+            var addinName = AppUtils.GetAddinName();
             var version = AppUtils.GetAddinVersion();
-            VersionLabel.Text = $"Capybara Translate Addin (Version {version})";
+            VersionLabel.Text = $"{addinName} (Version {version})";
         }
 
         private void ProductInfoDialog_KeyDown(object sender, KeyEventArgs e)

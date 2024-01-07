@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapybaraTranslateAddinSetup", "CapybaraTranslateAddinSetup\CapybaraTranslateAddinSetup.vdproj", "{5C6B38C6-E031-447A-8BAD-57F54AA3A1A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,8 @@ Global
 		{3D033CE2-38F0-4ED6-AFF1-CAA825532232}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D033CE2-38F0-4ED6-AFF1-CAA825532232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D033CE2-38F0-4ED6-AFF1-CAA825532232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6B38C6-E031-447A-8BAD-57F54AA3A1A3}.Debug|Any CPU.ActiveCfg = Debug
+		{5C6B38C6-E031-447A-8BAD-57F54AA3A1A3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

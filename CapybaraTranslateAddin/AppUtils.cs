@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Deployment.Application;
 using System.IO;
 
 namespace CapybaraTranslateAddin
@@ -25,12 +24,18 @@ namespace CapybaraTranslateAddin
 
         public static string GetAddinVersion()
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-                return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-            }
+            var ver =
+                System.Diagnostics.FileVersionInfo.GetVersionInfo(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location);
+            return ver.ProductVersion;
+        }
 
-            return "development mode";
+        public static string GetAddinName()
+        {
+            var ver =
+                System.Diagnostics.FileVersionInfo.GetVersionInfo(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location);
+            return ver.ProductName;
         }
     }
 }

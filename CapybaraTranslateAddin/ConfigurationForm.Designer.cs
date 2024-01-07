@@ -55,7 +55,7 @@
             this.DeepLGroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DeepLGroupBox.Name = "DeepLGroupBox";
             this.DeepLGroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DeepLGroupBox.Size = new System.Drawing.Size(707, 87);
+            this.DeepLGroupBox.Size = new System.Drawing.Size(810, 87);
             this.DeepLGroupBox.TabIndex = 0;
             this.DeepLGroupBox.TabStop = false;
             this.DeepLGroupBox.Text = "DeepL (for translation)";
@@ -64,9 +64,9 @@
             // 
             this.DeepLApiKeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeepLApiKeyTextBox.Location = new System.Drawing.Point(100, 39);
+            this.DeepLApiKeyTextBox.Location = new System.Drawing.Point(117, 39);
             this.DeepLApiKeyTextBox.Name = "DeepLApiKeyTextBox";
-            this.DeepLApiKeyTextBox.Size = new System.Drawing.Size(572, 23);
+            this.DeepLApiKeyTextBox.Size = new System.Drawing.Size(658, 30);
             this.DeepLApiKeyTextBox.TabIndex = 1;
             // 
             // label1
@@ -74,7 +74,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(27, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 15);
+            this.label1.Size = new System.Drawing.Size(84, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "API key:";
             // 
@@ -86,7 +86,7 @@
             this.OpenAiGroupBox.Controls.Add(this.label2);
             this.OpenAiGroupBox.Location = new System.Drawing.Point(28, 136);
             this.OpenAiGroupBox.Name = "OpenAiGroupBox";
-            this.OpenAiGroupBox.Size = new System.Drawing.Size(707, 87);
+            this.OpenAiGroupBox.Size = new System.Drawing.Size(810, 87);
             this.OpenAiGroupBox.TabIndex = 1;
             this.OpenAiGroupBox.TabStop = false;
             this.OpenAiGroupBox.Text = "Open AI (for translation)";
@@ -95,9 +95,9 @@
             // 
             this.OpenAiApiKeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenAiApiKeyTextBox.Location = new System.Drawing.Point(100, 32);
+            this.OpenAiApiKeyTextBox.Location = new System.Drawing.Point(117, 32);
             this.OpenAiApiKeyTextBox.Name = "OpenAiApiKeyTextBox";
-            this.OpenAiApiKeyTextBox.Size = new System.Drawing.Size(572, 23);
+            this.OpenAiApiKeyTextBox.Size = new System.Drawing.Size(658, 30);
             this.OpenAiApiKeyTextBox.TabIndex = 3;
             // 
             // label2
@@ -105,7 +105,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(27, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 15);
+            this.label2.Size = new System.Drawing.Size(84, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "API key:";
             // 
@@ -119,7 +119,7 @@
             this.GoogleGroupBox.Controls.Add(this.label3);
             this.GoogleGroupBox.Location = new System.Drawing.Point(28, 248);
             this.GoogleGroupBox.Name = "GoogleGroupBox";
-            this.GoogleGroupBox.Size = new System.Drawing.Size(707, 431);
+            this.GoogleGroupBox.Size = new System.Drawing.Size(810, 431);
             this.GoogleGroupBox.TabIndex = 2;
             this.GoogleGroupBox.TabStop = false;
             this.GoogleGroupBox.Text = "Google (for translation and text-to-speech)";
@@ -127,7 +127,7 @@
             // LoadFromKeyFileButton
             // 
             this.LoadFromKeyFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadFromKeyFileButton.Location = new System.Drawing.Point(452, 32);
+            this.LoadFromKeyFileButton.Location = new System.Drawing.Point(555, 32);
             this.LoadFromKeyFileButton.Name = "LoadFromKeyFileButton";
             this.LoadFromKeyFileButton.Size = new System.Drawing.Size(218, 37);
             this.LoadFromKeyFileButton.TabIndex = 4;
@@ -145,7 +145,7 @@
             this.GoogleCredentialsTextBox.Multiline = true;
             this.GoogleCredentialsTextBox.Name = "GoogleCredentialsTextBox";
             this.GoogleCredentialsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.GoogleCredentialsTextBox.Size = new System.Drawing.Size(627, 331);
+            this.GoogleCredentialsTextBox.Size = new System.Drawing.Size(730, 331);
             this.GoogleCredentialsTextBox.TabIndex = 3;
             // 
             // label3
@@ -153,14 +153,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(40, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 15);
+            this.label3.Size = new System.Drawing.Size(115, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Credentials:";
             // 
             // OkButton
             // 
             this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OkButton.Location = new System.Drawing.Point(480, 707);
+            this.OkButton.Location = new System.Drawing.Point(583, 707);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(114, 37);
             this.OkButton.TabIndex = 3;
@@ -172,7 +172,7 @@
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(621, 707);
+            this.CancelButton.Location = new System.Drawing.Point(724, 707);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(114, 37);
             this.CancelButton.TabIndex = 3;
@@ -183,9 +183,9 @@
             // ConfigurationForm
             // 
             this.AcceptButton = this.OkButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 778);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(866, 778);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.GoogleGroupBox);

@@ -114,8 +114,8 @@
             // 
             // TtsTaskPaneControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.runTtsButton);
             this.Controls.Add(this.cellValueForFilenameTextBox);
             this.Controls.Add(this.label3);
