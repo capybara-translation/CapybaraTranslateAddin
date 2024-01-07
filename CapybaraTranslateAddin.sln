@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{DAAF5BB6-2D69-41F5-8326-DF63EBDC07DC}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapybaraTranslateAddinSetup", "CapybaraTranslateAddinSetup\CapybaraTranslateAddinSetup.vdproj", "{5C6B38C6-E031-447A-8BAD-57F54AA3A1A3}"
