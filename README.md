@@ -1,5 +1,7 @@
 ﻿# Capybara Translate Addin
 
+https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/5706483b-d566-4044-9c57-e1c309eb5435
+
 ## Overview
 Excelから機械翻訳APIとText-to-Speech APIを呼び出せるアドインです。主にAnkiカード作成を効率化するために開発しましたが、Ankiユーザー以外の方にも便利かもしれません。
 機械翻訳APIについては、現在下記のサービスに対応しています。
