@@ -14,6 +14,7 @@ namespace CapybaraTranslateAddin.Configuration
             LastSelectedVoiceName = GoogleClient.DefaultTtsVoiceName;
             LastSelectedSoundFolder = "";
             LastSelectedFilenameColumn = "";
+            LastSelectedSpeechToTextLanguage = GoogleClient.DefaultSttLanguage;
         }
 
         [DefaultValue("")]
@@ -40,5 +41,9 @@ namespace CapybaraTranslateAddin.Configuration
         [DefaultValue("")]
         [JsonProperty("last_selected_filename_column", DefaultValueHandling = DefaultValueHandling.Populate)]
         public string LastSelectedFilenameColumn { get; set; }
+
+        [DefaultValue(GoogleClient.DefaultSttLanguage)]
+        [JsonProperty("last_selected_stt_language", DefaultValueHandling = DefaultValueHandling.Populate)]
+        public string LastSelectedSpeechToTextLanguage { get; set; }
     }
 }

@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Speech.V1;
 using Google.Cloud.TextToSpeech.V1;
 using Google.Cloud.Translation.V2;
+using Google.Protobuf;
+using NAudio.Wave;
 
 namespace CapybaraTranslateAddin.ApiClient
 {
-    public class GoogleClient : ITranslationClient, ITextToSpeechClient
+    public class GoogleClient : ITranslationClient, ITextToSpeechClient, ISpeechToTextClient
     {
         public const string DefaultSourceLanguage = "ja";
         public const string DefaultTargetLanguage = "en";
         public const string DefaultTtsVoiceName = "en-US-Neural2-A";
+        public const string DefaultSttLanguage = "en-US";
 
         public const string EngineCode = "google";
         public const string EngineName = "Google";
@@ -1827,9 +1832,159 @@ namespace CapybaraTranslateAddin.ApiClient
             "vi-VN-Wavenet-D"
         };
 
+        public static readonly List<Language> SupportedSttLanguages = new List<Language>
+        {
+            new Language { Label = "Afrikaans (South Africa)", Value = "af-ZA" },
+            new Language { Label = "Albanian (Albania)", Value = "sq-AL" },
+            new Language { Label = "Amharic (Ethiopia)", Value = "am-ET" },
+            new Language { Label = "Arabic (Algeria)", Value = "ar-DZ" },
+            new Language { Label = "Arabic (Bahrain)", Value = "ar-BH" },
+            new Language { Label = "Arabic (Egypt)", Value = "ar-EG" },
+            new Language { Label = "Arabic (Iraq)", Value = "ar-IQ" },
+            new Language { Label = "Arabic (Israel)", Value = "ar-IL" },
+            new Language { Label = "Arabic (Jordan)", Value = "ar-JO" },
+            new Language { Label = "Arabic (Kuwait)", Value = "ar-KW" },
+            new Language { Label = "Arabic (Lebanon)", Value = "ar-LB" },
+            new Language { Label = "Arabic (Mauritania)", Value = "ar-MR" },
+            new Language { Label = "Arabic (Morocco)", Value = "ar-MA" },
+            new Language { Label = "Arabic (Oman)", Value = "ar-OM" },
+            new Language { Label = "Arabic (Qatar)", Value = "ar-QA" },
+            new Language { Label = "Arabic (Saudi Arabia)", Value = "ar-SA" },
+            new Language { Label = "Arabic (State of Palestine)", Value = "ar-PS" },
+            new Language { Label = "Arabic (Tunisia)", Value = "ar-TN" },
+            new Language { Label = "Arabic (United Arab Emirates)", Value = "ar-AE" },
+            new Language { Label = "Arabic (Yemen)", Value = "ar-YE" },
+            new Language { Label = "Armenian (Armenia)", Value = "hy-AM" },
+            new Language { Label = "Azerbaijani (Azerbaijan)", Value = "az-AZ" },
+            new Language { Label = "Basque (Spain)", Value = "eu-ES" },
+            new Language { Label = "Bengali (Bangladesh)", Value = "bn-BD" },
+            new Language { Label = "Bengali (India)", Value = "bn-IN" },
+            new Language { Label = "Bosnian (Bosnia and Herzegovina)", Value = "bs-BA" },
+            new Language { Label = "Bulgarian (Bulgaria)", Value = "bg-BG" },
+            new Language { Label = "Burmese (Myanmar)", Value = "my-MM" },
+            new Language { Label = "Catalan (Spain)", Value = "ca-ES" },
+            new Language { Label = "Chinese, Cantonese (Traditional Hong Kong)", Value = "yue-Hant-HK" },
+            new Language { Label = "Chinese, Mandarin (Simplified, China)", Value = "zh (cmn-Hans-CN)" },
+            new Language { Label = "Chinese, Mandarin (Traditional, Taiwan)", Value = "zh-TW (cmn-Hant-TW)" },
+            new Language { Label = "Croatian (Croatia)", Value = "hr-HR" },
+            new Language { Label = "Czech (Czech Republic)", Value = "cs-CZ" },
+            new Language { Label = "Danish (Denmark)", Value = "da-DK" },
+            new Language { Label = "Dutch (Belgium)", Value = "nl-BE" },
+            new Language { Label = "Dutch (Netherlands)", Value = "nl-NL" },
+            new Language { Label = "English (Australia)", Value = "en-AU" },
+            new Language { Label = "English (Canada)", Value = "en-CA" },
+            new Language { Label = "English (Ghana)", Value = "en-GH" },
+            new Language { Label = "English (Hong Kong)", Value = "en-HK" },
+            new Language { Label = "English (India)", Value = "en-IN" },
+            new Language { Label = "English (Ireland)", Value = "en-IE" },
+            new Language { Label = "English (Kenya)", Value = "en-KE" },
+            new Language { Label = "English (New Zealand)", Value = "en-NZ" },
+            new Language { Label = "English (Nigeria)", Value = "en-NG" },
+            new Language { Label = "English (Pakistan)", Value = "en-PK" },
+            new Language { Label = "English (Philippines)", Value = "en-PH" },
+            new Language { Label = "English (Singapore)", Value = "en-SG" },
+            new Language { Label = "English (South Africa)", Value = "en-ZA" },
+            new Language { Label = "English (Tanzania)", Value = "en-TZ" },
+            new Language { Label = "English (United Kingdom)", Value = "en-GB" },
+            new Language { Label = "English (United States)", Value = "en-US" },
+            new Language { Label = "Estonian (Estonia)", Value = "et-EE" },
+            new Language { Label = "Filipino (Philippines)", Value = "fil-PH" },
+            new Language { Label = "Finnish (Finland)", Value = "fi-FI" },
+            new Language { Label = "French (Belgium)", Value = "fr-BE" },
+            new Language { Label = "French (Canada)", Value = "fr-CA" },
+            new Language { Label = "French (France)", Value = "fr-FR" },
+            new Language { Label = "French (Switzerland)", Value = "fr-CH" },
+            new Language { Label = "Galician (Spain)", Value = "gl-ES" },
+            new Language { Label = "Georgian (Georgia)", Value = "ka-GE" },
+            new Language { Label = "German (Austria)", Value = "de-AT" },
+            new Language { Label = "German (Germany)", Value = "de-DE" },
+            new Language { Label = "German (Switzerland)", Value = "de-CH" },
+            new Language { Label = "Greek (Greece)", Value = "el-GR" },
+            new Language { Label = "Gujarati (India)", Value = "gu-IN" },
+            new Language { Label = "Hebrew (Israel)", Value = "iw-IL" },
+            new Language { Label = "Hindi (India)", Value = "hi-IN" },
+            new Language { Label = "Hungarian (Hungary)", Value = "hu-HU" },
+            new Language { Label = "Icelandic (Iceland)", Value = "is-IS" },
+            new Language { Label = "Indonesian (Indonesia)", Value = "id-ID" },
+            new Language { Label = "Italian (Italy)", Value = "it-IT" },
+            new Language { Label = "Italian (Switzerland)", Value = "it-CH" },
+            new Language { Label = "Japanese (Japan)", Value = "ja-JP" },
+            new Language { Label = "Javanese (Indonesia)", Value = "jv-ID" },
+            new Language { Label = "Kannada (India)", Value = "kn-IN" },
+            new Language { Label = "Kazakh (Kazakhstan)", Value = "kk-KZ" },
+            new Language { Label = "Khmer (Cambodia)", Value = "km-KH" },
+            new Language { Label = "Kinyarwanda (Rwanda)", Value = "rw-RW" },
+            new Language { Label = "Korean (South Korea)", Value = "ko-KR" },
+            new Language { Label = "Lao (Laos)", Value = "lo-LA" },
+            new Language { Label = "Latvian (Latvia)", Value = "lv-LV" },
+            new Language { Label = "Lithuanian (Lithuania)", Value = "lt-LT" },
+            new Language { Label = "Macedonian (North Macedonia)", Value = "mk-MK" },
+            new Language { Label = "Malay (Malaysia)", Value = "ms-MY" },
+            new Language { Label = "Malayalam (India)", Value = "ml-IN" },
+            new Language { Label = "Marathi (India)", Value = "mr-IN" },
+            new Language { Label = "Mongolian (Mongolia)", Value = "mn-MN" },
+            new Language { Label = "Nepali (Nepal)", Value = "ne-NP" },
+            new Language { Label = "Norwegian Bokmål (Norway)", Value = "no-NO" },
+            new Language { Label = "Persian (Iran)", Value = "fa-IR" },
+            new Language { Label = "Polish (Poland)", Value = "pl-PL" },
+            new Language { Label = "Portuguese (Brazil)", Value = "pt-BR" },
+            new Language { Label = "Portuguese (Portugal)", Value = "pt-PT" },
+            new Language { Label = "Punjabi (Gurmukhi India)", Value = "pa-Guru-IN" },
+            new Language { Label = "Romanian (Romania)", Value = "ro-RO" },
+            new Language { Label = "Russian (Russia)", Value = "ru-RU" },
+            new Language { Label = "Serbian (Serbia)", Value = "sr-RS" },
+            new Language { Label = "Sinhala (Sri Lanka)", Value = "si-LK" },
+            new Language { Label = "Slovak (Slovakia)", Value = "sk-SK" },
+            new Language { Label = "Slovenian (Slovenia)", Value = "sl-SI" },
+            new Language { Label = "Southern Sotho (South Africa)", Value = "st-ZA" },
+            new Language { Label = "Spanish (Argentina)", Value = "es-AR" },
+            new Language { Label = "Spanish (Bolivia)", Value = "es-BO" },
+            new Language { Label = "Spanish (Chile)", Value = "es-CL" },
+            new Language { Label = "Spanish (Colombia)", Value = "es-CO" },
+            new Language { Label = "Spanish (Costa Rica)", Value = "es-CR" },
+            new Language { Label = "Spanish (Dominican Republic)", Value = "es-DO" },
+            new Language { Label = "Spanish (Ecuador)", Value = "es-EC" },
+            new Language { Label = "Spanish (El Salvador)", Value = "es-SV" },
+            new Language { Label = "Spanish (Guatemala)", Value = "es-GT" },
+            new Language { Label = "Spanish (Honduras)", Value = "es-HN" },
+            new Language { Label = "Spanish (Mexico)", Value = "es-MX" },
+            new Language { Label = "Spanish (Nicaragua)", Value = "es-NI" },
+            new Language { Label = "Spanish (Panama)", Value = "es-PA" },
+            new Language { Label = "Spanish (Paraguay)", Value = "es-PY" },
+            new Language { Label = "Spanish (Peru)", Value = "es-PE" },
+            new Language { Label = "Spanish (Puerto Rico)", Value = "es-PR" },
+            new Language { Label = "Spanish (Spain)", Value = "es-ES" },
+            new Language { Label = "Spanish (United States)", Value = "es-US" },
+            new Language { Label = "Spanish (Uruguay)", Value = "es-UY" },
+            new Language { Label = "Spanish (Venezuela)", Value = "es-VE" },
+            new Language { Label = "Sundanese (Indonesia)", Value = "su-ID" },
+            new Language { Label = "Swahili (Kenya)", Value = "sw-KE" },
+            new Language { Label = "Swahili (Tanzania)", Value = "sw-TZ" },
+            new Language { Label = "Swati (Latin, South Africa)", Value = "ss-Latn-ZA" },
+            new Language { Label = "Swedish (Sweden)", Value = "sv-SE" },
+            new Language { Label = "Tamil (India)", Value = "ta-IN" },
+            new Language { Label = "Tamil (Malaysia)", Value = "ta-MY" },
+            new Language { Label = "Tamil (Singapore)", Value = "ta-SG" },
+            new Language { Label = "Tamil (Sri Lanka)", Value = "ta-LK" },
+            new Language { Label = "Telugu (India)", Value = "te-IN" },
+            new Language { Label = "Thai (Thailand)", Value = "th-TH" },
+            new Language { Label = "Tsonga (South Africa)", Value = "ts-ZA" },
+            new Language { Label = "Tswana (Latin, South Africa)", Value = "tn-Latn-ZA" },
+            new Language { Label = "Turkish (Turkey)", Value = "tr-TR" },
+            new Language { Label = "Ukrainian (Ukraine)", Value = "uk-UA" },
+            new Language { Label = "Urdu (India)", Value = "ur-IN" },
+            new Language { Label = "Urdu (Pakistan)", Value = "ur-PK" },
+            new Language { Label = "Uzbek (Uzbekistan)", Value = "uz-UZ" },
+            new Language { Label = "Venda (South Africa)", Value = "ve-ZA" },
+            new Language { Label = "Vietnamese (Vietnam)", Value = "vi-VN" },
+            new Language { Label = "Xhosa (South Africa)", Value = "xh-ZA" },
+            new Language { Label = "Zulu (South Africa)", Value = "zu-ZA" },
+        };
+
         private readonly GoogleClientOptions _options;
         private readonly TranslationClient _translationClient;
         private readonly TextToSpeechClient _ttsClient;
+        private readonly SpeechClient _sttClient;
 
         public GoogleClient(GoogleClientOptions options)
         {
@@ -1838,6 +1993,11 @@ namespace CapybaraTranslateAddin.ApiClient
             _translationClient = TranslationClient.Create(gc);
 
             _ttsClient = new TextToSpeechClientBuilder
+            {
+                GoogleCredential = gc
+            }.Build();
+
+            _sttClient = new SpeechClientBuilder
             {
                 GoogleCredential = gc
             }.Build();
@@ -1879,6 +2039,26 @@ namespace CapybaraTranslateAddin.ApiClient
             }
 
             return true;
+        }
+
+        public async Task<string> SpeechToTextAsync(string mp3File, string languageCode)
+        {
+            var audio = await RecognitionAudio.FromFileAsync(mp3File);
+            var config = new RecognitionConfig
+            {
+                Encoding = RecognitionConfig.Types.AudioEncoding.Mp3,
+                SampleRateHertz = 16000,
+                LanguageCode = languageCode
+            };
+            var response = await _sttClient.RecognizeAsync(config, audio);
+            var sb = new StringBuilder();
+            foreach (var result in response.Results)
+            foreach (var alternative in result.Alternatives)
+            {
+                sb.Append(alternative.Transcript + "\n");
+            }
+
+            return sb.ToString();
         }
 
         public async Task<string> TranslateAsync(string text, string from, string to)

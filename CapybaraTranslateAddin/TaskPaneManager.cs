@@ -20,10 +20,10 @@ namespace CapybaraTranslateAddin
         ///     The function that will construct the taskpane if one does not already exist in the
         ///     current Excel window.
         /// </param>
-        public static CustomTaskPane GetOrCreate(string taskPaneTitle,
+        public static CustomTaskPane GetOrCreate(string taskPaneTitle, string prefix,
             Func<UserControl> taskPaneCreatorFunc)
         {
-            var key = Globals.ThisAddIn.Application.Hwnd.ToString();
+            var key = $"{prefix}_{Globals.ThisAddIn.Application.Hwnd}";
             if (!_createdPanes.ContainsKey(key))
             {
                 var taskPaneControl = taskPaneCreatorFunc();

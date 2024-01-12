@@ -252,7 +252,7 @@ namespace CapybaraTranslateAddin
         private void openTtsPaneButton_Click(object sender, RibbonControlEventArgs e)
         {
             var taskPane =
-                TaskPaneManager.GetOrCreate("Text to Speech", () => new TtsTaskPaneControl(_addinConfiguration));
+                TaskPaneManager.GetOrCreate("Text to Speech", "tts", () => new TtsTaskPaneControl(_addinConfiguration));
 
             taskPane.Visible = true;
         }
@@ -264,6 +264,14 @@ namespace CapybaraTranslateAddin
                 dialog.ShowDialog(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
 
             }
+        }
+
+        private void openSttPaneButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            var taskPane =
+                TaskPaneManager.GetOrCreate("Speech to Text", "stt", () => new SttTaskPaneControl(_addinConfiguration));
+
+            taskPane.Visible = true;
         }
     }
 }
