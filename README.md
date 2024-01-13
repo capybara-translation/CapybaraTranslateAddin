@@ -19,7 +19,7 @@ Speech-to-text services currently available include:
 ## Setting up Capybara Translate Addin
 
 You can download the installer from the [Release page](https://github.com/capybara-translation/CapybaraTranslateAddin/releases).
-You need to obtain API keys for the services mentioned above (a service account key for Google) before using this addin. After obtaining the API keys, install the addin, launch Excel, and click Capybara Translate tab > Preferences > Settings to display the Settings dialog. In the Settings dialog, enter the API keys in the corresponding text fields and click the OK button to apply the changes. The settings are saved in `C:\Users\UserName\AppData\Roaming\CapybaraTranslateAddin\config.json`.
+You need to obtain API keys for the services mentioned above (a service account key for Google) before using this addin. After obtaining the API keys, install the addin, launch Excel, and click Capybara Translate tab > Preferences > Settings to display the Settings dialog. In the Settings dialog, enter the API keys in the corresponding text fields and click the OK button to apply the changes. The settings are saved in `C:\Users\UserName\AppData\Roaming\CapybaraTranslateAddin\config.json` when you close Excel.
 
 ## Using Capybara Translate Addin
 ### Translation
