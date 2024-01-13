@@ -2,6 +2,7 @@
 
 ## Overview
 Capybara Translate Addin is an Excel addin that allows you to call the APIs of major machine translation, text-to-speech, and speech-to-text services.
+
 Machine translation services currently available include:
 
 - Google Cloud Translation API V2
@@ -19,7 +20,7 @@ Speech-to-text services currently available include:
 ## Setting up Capybara Translate Addin
 
 You can download the installer from the [Release page](https://github.com/capybara-translation/CapybaraTranslateAddin/releases).
-You need to obtain API keys for the services mentioned above (a service account key for Google) before using this addin. After obtaining the API keys, install the addin, launch Excel, and click Capybara Translate tab > Preferences > Settings to display the Settings dialog. In the Settings dialog, enter the API keys in the corresponding text fields and click the OK button to apply the changes. The settings are saved in `C:\Users\UserName\AppData\Roaming\CapybaraTranslateAddin\config.json` when you close Excel.
+You need to obtain API keys for the services mentioned above (a service account key for Google) before using this addin. After obtaining the API keys, install the addin, launch Excel, and click Capybara Translate tab > Preferences > Settings to display the Settings dialog. In the Settings dialog, enter the API keys in the corresponding text fields and click the OK button to apply the changes. The settings are saved in `C:\Users\UserName\AppData\Roaming\CapybaraTranslateAddin\config.json` when you exit Excel.
 
 ## Using Capybara Translate Addin
 ### Translation
