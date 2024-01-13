@@ -26,3 +26,10 @@ You need to obtain API keys for the services mentioned above (a service account 
 
 https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/7a32488c-3079-4682-9c60-387798d330e2
 
+### Text-to-Speech
+
+https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/378ffc95-5f95-4e8e-b277-764d3c9514f4
+
+### Speech-to-Text
+
+https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/b3d45169-7e4f-4b98-9c39-bba326d9c77b
