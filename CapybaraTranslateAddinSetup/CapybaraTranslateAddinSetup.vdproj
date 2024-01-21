@@ -478,6 +478,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5B4C72DAE7B2F5938E5D3DE143AA4060"
+        "OwnerKey" = "8:_AA1BAE8092AA03011BC086CB6F4FFF7A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5B4C72DAE7B2F5938E5D3DE143AA4060"
         "OwnerKey" = "8:_DFB1587C7AAC525F2A3208FE4962A275"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -712,6 +718,12 @@
         "Entry"
         {
         "MsmKey" = "8:_A8CD3254A17FE3DB5EAF7FE1E1958E8D"
+        "OwnerKey" = "8:_36C4576639EC4092A550ED9741C30888"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AA1BAE8092AA03011BC086CB6F4FFF7A"
         "OwnerKey" = "8:_36C4576639EC4092A550ED9741C30888"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1574,6 +1586,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -2890,6 +2910,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AA1BAE8092AA03011BC086CB6F4FFF7A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DiffMatchPatch, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_AA1BAE8092AA03011BC086CB6F4FFF7A"
+                    {
+                    "Name" = "8:DiffMatchPatch.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DiffMatchPatch.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7889A561F04E4C94AA7B5585E39C41AB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ACD9F7D9D36A70D7C25E36E52248E636"
             {
             "AssemblyRegister" = "3:1"
@@ -3885,15 +3936,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Capybara Translate Addin"
-        "ProductCode" = "8:{BFD8BBE4-A189-47B3-A875-AC061A18BAA7}"
-        "PackageCode" = "8:{4C47EB5F-D7BA-41D6-982A-D913979A89D9}"
+        "ProductCode" = "8:{A4C03A5A-2EA4-4E7C-8694-B180DE1600D2}"
+        "PackageCode" = "8:{3BAFC247-85BD-4959-BB5A-F34DD8CFEEED}"
         "UpgradeCode" = "8:{055D5E58-8FEE-4C4F-9F3B-905EBE9525A2}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Capybara Translation"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -4509,7 +4560,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_36C4576639EC4092A550ED9741C30888"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\CapybaraTranslateAddin\\obj\\Release\\CapybaraTranslateAddin.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7889A561F04E4C94AA7B5585E39C41AB"
