@@ -34,3 +34,9 @@ https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/37
 ### Speech-to-Text
 
 https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/b3d45169-7e4f-4b98-9c39-bba326d9c77b
+
+### Utilities
+#### Text Comparison (Diff)
+
+https://github.com/capybara-translation/CapybaraTranslateAddin/assets/9638290/1f822c13-c474-4e3a-b8b1-7bf32f46cc3e
+
