@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Microsoft.Office.Tools;
 
-namespace CapybaraTranslateAddin
+namespace CapybaraTranslateAddin.UI
 {
     // Adapted from https://stackoverflow.com/a/24732000
     public static class TaskPaneManager

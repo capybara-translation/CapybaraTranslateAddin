@@ -8,7 +8,7 @@ using CapybaraTranslateAddin.Configuration;
 using Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
-namespace CapybaraTranslateAddin
+namespace CapybaraTranslateAddin.UI
 {
     public partial class TtsTaskPaneControl : UserControl
     {

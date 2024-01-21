@@ -1,4 +1,4 @@
-﻿namespace CapybaraTranslateAddin
+﻿namespace CapybaraTranslateAddin.UI
 {
     partial class TtsTaskPaneControl
     {

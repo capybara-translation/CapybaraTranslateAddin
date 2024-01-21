@@ -35,54 +35,58 @@
         private void InitializeComponent()
         {
             this.tab1 = this.Factory.CreateRibbonTab();
-            this.preferencesGroup = this.Factory.CreateRibbonGroup();
-            this.translationGroup = this.Factory.CreateRibbonGroup();
+            this.PreferencesGroup = this.Factory.CreateRibbonGroup();
+            this.TranslationGroup = this.Factory.CreateRibbonGroup();
             this.engineDropDown = this.Factory.CreateRibbonDropDown();
             this.fromLangDropDown = this.Factory.CreateRibbonDropDown();
             this.toLangDropDown = this.Factory.CreateRibbonDropDown();
-            this.ttsGroup = this.Factory.CreateRibbonGroup();
+            this.TtsGroup = this.Factory.CreateRibbonGroup();
+            this.SttGroup = this.Factory.CreateRibbonGroup();
+            this.UtilitiesGroup = this.Factory.CreateRibbonGroup();
             this.HelpGroup = this.Factory.CreateRibbonGroup();
             this.openConfigButton = this.Factory.CreateRibbonButton();
             this.swapButton = this.Factory.CreateRibbonButton();
             this.translateButton = this.Factory.CreateRibbonButton();
             this.openTtsPaneButton = this.Factory.CreateRibbonButton();
             this.openSttPaneButton = this.Factory.CreateRibbonButton();
+            this.DiffButton = this.Factory.CreateRibbonButton();
             this.ShowProductInfoButton = this.Factory.CreateRibbonButton();
-            this.group1 = this.Factory.CreateRibbonGroup();
             this.tab1.SuspendLayout();
-            this.preferencesGroup.SuspendLayout();
-            this.translationGroup.SuspendLayout();
-            this.ttsGroup.SuspendLayout();
+            this.PreferencesGroup.SuspendLayout();
+            this.TranslationGroup.SuspendLayout();
+            this.TtsGroup.SuspendLayout();
+            this.SttGroup.SuspendLayout();
+            this.UtilitiesGroup.SuspendLayout();
             this.HelpGroup.SuspendLayout();
-            this.group1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
-            this.tab1.Groups.Add(this.preferencesGroup);
-            this.tab1.Groups.Add(this.translationGroup);
-            this.tab1.Groups.Add(this.ttsGroup);
-            this.tab1.Groups.Add(this.group1);
+            this.tab1.Groups.Add(this.PreferencesGroup);
+            this.tab1.Groups.Add(this.TranslationGroup);
+            this.tab1.Groups.Add(this.TtsGroup);
+            this.tab1.Groups.Add(this.SttGroup);
+            this.tab1.Groups.Add(this.UtilitiesGroup);
             this.tab1.Groups.Add(this.HelpGroup);
             this.tab1.Label = "Capybara Translate";
             this.tab1.Name = "tab1";
             // 
-            // preferencesGroup
+            // PreferencesGroup
             // 
-            this.preferencesGroup.Items.Add(this.openConfigButton);
-            this.preferencesGroup.Label = "Preferences";
-            this.preferencesGroup.Name = "preferencesGroup";
+            this.PreferencesGroup.Items.Add(this.openConfigButton);
+            this.PreferencesGroup.Label = "Preferences";
+            this.PreferencesGroup.Name = "PreferencesGroup";
             // 
-            // translationGroup
+            // TranslationGroup
             // 
-            this.translationGroup.Items.Add(this.engineDropDown);
-            this.translationGroup.Items.Add(this.fromLangDropDown);
-            this.translationGroup.Items.Add(this.toLangDropDown);
-            this.translationGroup.Items.Add(this.swapButton);
-            this.translationGroup.Items.Add(this.translateButton);
-            this.translationGroup.Label = "Translation";
-            this.translationGroup.Name = "translationGroup";
+            this.TranslationGroup.Items.Add(this.engineDropDown);
+            this.TranslationGroup.Items.Add(this.fromLangDropDown);
+            this.TranslationGroup.Items.Add(this.toLangDropDown);
+            this.TranslationGroup.Items.Add(this.swapButton);
+            this.TranslationGroup.Items.Add(this.translateButton);
+            this.TranslationGroup.Label = "Translation";
+            this.TranslationGroup.Name = "TranslationGroup";
             // 
             // engineDropDown
             // 
@@ -102,11 +106,23 @@
             this.toLangDropDown.Name = "toLangDropDown";
             this.toLangDropDown.SizeString = "Portuguese (Brazilian)";
             // 
-            // ttsGroup
+            // TtsGroup
             // 
-            this.ttsGroup.Items.Add(this.openTtsPaneButton);
-            this.ttsGroup.Label = "Text to Speech";
-            this.ttsGroup.Name = "ttsGroup";
+            this.TtsGroup.Items.Add(this.openTtsPaneButton);
+            this.TtsGroup.Label = "Text to Speech";
+            this.TtsGroup.Name = "TtsGroup";
+            // 
+            // SttGroup
+            // 
+            this.SttGroup.Items.Add(this.openSttPaneButton);
+            this.SttGroup.Label = "Speech to Text";
+            this.SttGroup.Name = "SttGroup";
+            // 
+            // UtilitiesGroup
+            // 
+            this.UtilitiesGroup.Items.Add(this.DiffButton);
+            this.UtilitiesGroup.Label = "Utilities";
+            this.UtilitiesGroup.Name = "UtilitiesGroup";
             // 
             // HelpGroup
             // 
@@ -159,17 +175,22 @@
             this.openSttPaneButton.ShowImage = true;
             this.openSttPaneButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.openSttPaneButton_Click);
             // 
+            // DiffButton
+            // 
+            this.DiffButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.DiffButton.Label = "Compare";
+            this.DiffButton.Name = "DiffButton";
+            this.DiffButton.OfficeImageId = "ReviewCompareTwoVersions";
+            this.DiffButton.ScreenTip = "Compare cell texts";
+            this.DiffButton.ShowImage = true;
+            this.DiffButton.SuperTip = "Compare selected cell texts against their adjacent ones.";
+            this.DiffButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.DiffButton_Click);
+            // 
             // ShowProductInfoButton
             // 
             this.ShowProductInfoButton.Label = "About This Addin";
             this.ShowProductInfoButton.Name = "ShowProductInfoButton";
             this.ShowProductInfoButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ShowProductInfoButton_Click);
-            // 
-            // group1
-            // 
-            this.group1.Items.Add(this.openSttPaneButton);
-            this.group1.Label = "Speech to Text";
-            this.group1.Name = "group1";
             // 
             // MainRibbon
             // 
@@ -180,16 +201,18 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.MainRibbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
-            this.preferencesGroup.ResumeLayout(false);
-            this.preferencesGroup.PerformLayout();
-            this.translationGroup.ResumeLayout(false);
-            this.translationGroup.PerformLayout();
-            this.ttsGroup.ResumeLayout(false);
-            this.ttsGroup.PerformLayout();
+            this.PreferencesGroup.ResumeLayout(false);
+            this.PreferencesGroup.PerformLayout();
+            this.TranslationGroup.ResumeLayout(false);
+            this.TranslationGroup.PerformLayout();
+            this.TtsGroup.ResumeLayout(false);
+            this.TtsGroup.PerformLayout();
+            this.SttGroup.ResumeLayout(false);
+            this.SttGroup.PerformLayout();
+            this.UtilitiesGroup.ResumeLayout(false);
+            this.UtilitiesGroup.PerformLayout();
             this.HelpGroup.ResumeLayout(false);
             this.HelpGroup.PerformLayout();
-            this.group1.ResumeLayout(false);
-            this.group1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,20 +220,22 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup preferencesGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup PreferencesGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton openConfigButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup translationGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup TranslationGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown engineDropDown;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown fromLangDropDown;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown toLangDropDown;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton translateButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup ttsGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup TtsGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton swapButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton openTtsPaneButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup HelpGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton ShowProductInfoButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton openSttPaneButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup SttGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup UtilitiesGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton DiffButton;
     }
 
     partial class ThisRibbonCollection

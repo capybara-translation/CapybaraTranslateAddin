@@ -131,6 +131,9 @@
     <Reference Include="Azure.Core, Version=1.36.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Core.1.36.0\lib\net472\Azure.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DiffMatchPatch, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiffMatchPatch.1.0.3\lib\netstandard2.0\DiffMatchPatch.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.10.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.10.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
     </Reference>
@@ -350,7 +353,7 @@
   -->
   <ItemGroup>
     <Compile Include="ApiClient\ISpeechToTextClient.cs" />
-    <Compile Include="ArbitraryWindow.cs" />
+    <Compile Include="UI\ArbitraryWindow.cs" />
     <Compile Include="ApiClient\DeepLClient.cs" />
     <Compile Include="ApiClient\DeepLClientOptions.cs" />
     <Compile Include="ApiClient\GoogleClientOptions.cs" />
@@ -361,17 +364,17 @@
     <Compile Include="ApiClient\Language.cs" />
     <Compile Include="ApiClient\OpenAiClientOptions.cs" />
     <Compile Include="AppUtils.cs" />
-    <Compile Include="ConfigurationForm.cs">
+    <Compile Include="UI\ConfigurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfigurationForm.Designer.cs">
+    <Compile Include="UI\ConfigurationForm.Designer.cs">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Configuration\AddinConfiguration.cs" />
-    <Compile Include="ErrorMessageDialog.cs">
+    <Compile Include="UI\ErrorMessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ErrorMessageDialog.Designer.cs">
+    <Compile Include="UI\ErrorMessageDialog.Designer.cs">
       <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="LinqExtensions.cs" />
@@ -384,47 +387,48 @@
     <Compile Include="Configuration\DeepLConfiguration.cs" />
     <Compile Include="Configuration\GoogleConfiguration.cs" />
     <Compile Include="Configuration\OpenAiConfiguration.cs" />
-    <Compile Include="ProductInfoDialog.cs">
+    <Compile Include="UI\ProductInfoDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductInfoDialog.Designer.cs">
+    <Compile Include="UI\ProductInfoDialog.Designer.cs">
       <DependentUpon>ProductInfoDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProgressDialog.cs">
+    <Compile Include="UI\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressDialog.Designer.cs">
+    <Compile Include="UI\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SttTaskPaneControl.cs">
+    <Compile Include="UI\SttTaskPaneControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SttTaskPaneControl.Designer.cs">
+    <Compile Include="UI\SttTaskPaneControl.Designer.cs">
       <DependentUpon>SttTaskPaneControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TaskPaneManager.cs" />
-    <Compile Include="TtsTaskPaneControl.cs">
+    <Compile Include="UI\TaskPaneManager.cs" />
+    <Compile Include="UI\TtsTaskPaneControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TtsTaskPaneControl.Designer.cs">
+    <Compile Include="UI\TtsTaskPaneControl.Designer.cs">
       <DependentUpon>TtsTaskPaneControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ConfigurationForm.resx">
+    <Compile Include="Utilities\Diff.cs" />
+    <EmbeddedResource Include="UI\ConfigurationForm.resx">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErrorMessageDialog.resx">
+    <EmbeddedResource Include="UI\ErrorMessageDialog.resx">
       <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainRibbon.resx">
       <DependentUpon>MainRibbon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductInfoDialog.resx">
+    <EmbeddedResource Include="UI\ProductInfoDialog.resx">
       <DependentUpon>ProductInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressDialog.resx">
+    <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -436,10 +440,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SttTaskPaneControl.resx">
+    <EmbeddedResource Include="UI\SttTaskPaneControl.resx">
       <DependentUpon>SttTaskPaneControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TtsTaskPaneControl.resx">
+    <EmbeddedResource Include="UI\TtsTaskPaneControl.resx">
       <DependentUpon>TtsTaskPaneControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />

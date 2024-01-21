@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using CapybaraTranslateAddin.ApiClient;
 using CapybaraTranslateAddin.Configuration;
+using CapybaraTranslateAddin.UI;
+using DiffMatchPatch;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
 using Application = Microsoft.Office.Interop.Excel.Application;
+using Diff = CapybaraTranslateAddin.Utilities.Diff;
 
 namespace CapybaraTranslateAddin
 {
@@ -272,6 +275,34 @@ namespace CapybaraTranslateAddin
                 TaskPaneManager.GetOrCreate("Speech to Text", "stt", () => new SttTaskPaneControl(_addinConfiguration));
 
             taskPane.Visible = true;
+        }
+
+        private async void DiffButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            var oldStatusBar = Application.DisplayStatusBar;
+            var progressMsg = "Running text comparison on selected cells...";
+            Application.DisplayStatusBar = true;
+            Application.StatusBar = progressMsg;
+            ProgressDialog progressDialog = null;
+
+            try
+            {
+                Range selection = Application.Selection;
+                progressDialog = new ProgressDialog(progressMsg, 1, selection.Count);
+                progressDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
+                await Diff.RunOnSelectedCells((progress) => progressDialog.ReportProgress(progress));
+            }
+            catch (Exception ex)
+            {
+                var errorMessageDialog = new ErrorMessageDialog(ex);
+                errorMessageDialog.Show(new ArbitraryWindow(new IntPtr(Application.Hwnd)));
+            }
+            finally
+            {
+                Application.DisplayStatusBar = oldStatusBar;
+                Application.StatusBar = false;
+                progressDialog?.Close();
+            }
         }
     }
 }

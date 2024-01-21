@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using CapybaraTranslateAddin.Configuration;
 
-namespace CapybaraTranslateAddin
+namespace CapybaraTranslateAddin.UI
 {
     public partial class ConfigurationForm : Form
     {
